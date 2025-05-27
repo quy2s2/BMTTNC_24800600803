@@ -1,4 +1,9 @@
-class RailFenceCipher:
+class RailfenceCipher:
+    def encrypt_text(self, plain_text, key):
+        return self.rail_fence_encrypt(plain_text, key)
+
+    def decrypt_text(self, cipher_text, key):
+        return self.rail_fence_decrypt(cipher_text, key)
     def __init__(self):
         pass
 

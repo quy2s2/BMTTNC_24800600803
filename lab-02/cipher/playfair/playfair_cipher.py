@@ -1,4 +1,4 @@
-class PlayFairCipher:
+class PlayfairCipher:
     def __init__(self) -> None:
         pass
 
@@ -28,6 +28,14 @@ class PlayFairCipher:
             for col in range(len(matrix[row])):
                 if matrix[row][col] == letter:
                     return row, col
+    def encrypt_text(self, plain_text, key):
+        matrix = self.create_playfair_matrix(key)
+        return self.playfair_encrypt(plain_text, matrix)
+
+    def decrypt_text(self, cipher_text, key):
+        matrix = self.create_playfair_matrix(key)
+        return self.playfair_decrypt(cipher_text, matrix)
+
     def playfair_encrypt(self, plain_text, matrix):
         # Chuyển "J" thành "I" trong văn bản đầu vào
         plain_text = plain_text.replace("J", "I")
