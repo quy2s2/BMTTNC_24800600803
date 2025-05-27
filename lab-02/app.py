@@ -90,8 +90,9 @@ def playfair():
 def playfair_encrypt():
     text = request.form['inputPlainText']
     key = request.form['inputKeyPlain']
-    cipher = PlayfairCipher()
-    encrypted_text = cipher.encrypt_text(text, key)
+    cipher = PlayFairCipher()
+    matrix = cipher.create_playfair_matrix(key)
+    encrypted_text = cipher.playfair_encrypt(text, matrix)
     return f"Input text: {text}<br>Key: {key}<br>Encrypted text: {encrypted_text}"
 
 # Giải mã Playfair
@@ -99,8 +100,9 @@ def playfair_encrypt():
 def playfair_decrypt():
     text = request.form['inputCipherText']
     key = request.form['inputKeyCipher']
-    cipher = PlayfairCipher()
-    decrypted_text = cipher.decrypt_text(text, key)
+    cipher = PlayFairCipher()
+    matrix = cipher.create_playfair_matrix(key)
+    decrypted_text = cipher.playfair_decrypt(text, matrix)
     return f"Cipher text: {text}<br>Key: {key}<br>Decrypted text: {decrypted_text}"
 
 if __name__ == "__main__":
