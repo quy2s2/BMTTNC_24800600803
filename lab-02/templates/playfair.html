@@ -1,52 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Playfair Cipher</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light gray background */
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        .container {
+            max-width: 700px; /* Limit container width for better readability */
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 30px; /* Space between cards */
+        }
+        .card-header {
+            background-color: #007bff; /* Bootstrap primary blue */
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            padding: 15px 20px;
+        }
+        .card-title {
+            color: #007bff; /* Blue for section titles */
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        .form-label {
+            font-weight: 500;
+            color: #495057;
+        }
+        .btn {
+            min-width: 120px; /* Consistent button width */
+            margin-top: 10px;
+        }
+        .text-center-title {
+            font-size: 2.5rem; /* Larger main title */
+            font-weight: 700;
+            color: #343a40;
+            margin-bottom: 40px;
+            margin-top: 50px;
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
-        <table class="table">
-            <tr>
-                <td style="text-align: center; font-weight: bold; font-size: 25px;">PLAYFAIR CIPHER</td>
-            </tr>
-            <tr>
-                <td style="font-weight: bold; color: blue;">ENCRYPTION</td>
-            </tr>
-            <tr>
-                <td>
-                    <form method="POST" action="/playfair/encrypt">
-                        <div class="mb-3">
-                            <label class="form-label">Plain text:</label>
-                            <input type="text" class="form-control" name="inputPlainText" placeholder="Input Plain Text" required autofocus/>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Key:</label>
-                            <input type="text" class="form-control" name="inputKeyPlain" placeholder="Input Key" required/>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Encrypt</button>
-                    </form>
-                </td>
-            </tr>
-            <tr>
-                <td style="font-weight: bold; color: blue;">DECRYPTION</td>
-            </tr>
-            <tr>
-                <td>
-                    <form method="POST" action="/playfair/decrypt">
-                        <div class="mb-3">
-                            <label class="form-label">Cipher text:</label>
-                            <input type="text" class="form-control" name="inputCipherText" placeholder="Input Cipher Text" required/>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Key:</label>
-                            <input type="text" class="form-control" name="inputKeyCipher" placeholder="Input Key" required/>
-                        </div>
-                        <button type="submit" class="btn btn-success">Decrypt</button>
-                    </form>
-                </td>
-            </tr>
-        </table>
+        <h1 class="text-center text-center-title">PLAYFAIR CIPHER</h1>
+
+        <div class="card">
+            <div class="card-header">ENCRYPTION</div>
+            <div class="card-body">
+                <h5 class="card-title">Encrypt your plain text:</h5>
+                <form method="POST" action="/playfair/encrypt">
+                    <div class="form-group">
+                        <label for="inputPlainText" class="form-label">Plain text:</label>
+                        <input type="text" class="form-control" id="inputPlainText" name="inputPlainText" placeholder="Input Plain Text" required autofocus/>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputKeyPlain" class="form-label">Key:</label>
+                        <input type="text" class="form-control" id="inputKeyPlain" name="inputKeyPlain" placeholder="Input Key" required/>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Encrypt</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">DECRYPTION</div>
+            <div class="card-body">
+                <h5 class="card-title">Decrypt your cipher text:</h5>
+                <form method="POST" action="/playfair/decrypt">
+                    <div class="form-group">
+                        <label for="inputCipherText" class="form-label">Cipher text:</label>
+                        <input type="text" class="form-control" id="inputCipherText" name="inputCipherText" placeholder="Input Cipher Text" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputKeyCipher" class="form-label">Key:</label>
+                        <input type="text" class="form-control" id="inputKeyCipher" name="inputKeyCipher" placeholder="Input Key" required/>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-block">Decrypt</button>
+                </form>
+            </div>
+        </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

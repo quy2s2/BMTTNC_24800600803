@@ -1,20 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Thực hành An toàn thông tin nâng cao</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <style>
+        body {
+            background-color: #e9ecef;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        .logo {
+            display: block;
+            margin: 40px auto 20px auto;
+            width: 25%;
+            max-width: 200px;
+            height: auto;
+        }
+        .card {
+            margin-top: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: none;
+        }
+        .title {
+            font-weight: 700;
+            text-align: center;
+            margin-top: 30px;
+            color: #343a40;
+            font-size: 2.2rem;
+        }
+        .student-info {
+            text-align: center;
+            font-weight: 600;
+            color: #6c757d;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+        .list-group-item {
+            border-color: #dee2e6;
+            font-size: 1.05rem;
+            padding: 15px 20px;
+            transition: background-color 0.3s ease;
+        }
+        .list-group-item:hover {
+            background-color: #f8f9fa;
+        }
+        .list-group-item a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: block;
+        }
+        .list-group-item a:hover {
+            color: #0056b3;
+            text-decoration: none;
+        }
+        .card-title {
+            font-weight: 600;
+            color: #495057;
+            font-size: 1.75rem;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <img src="https://file1.hutech.edu.vn/file/editor/homepage/stories/hinh34/logo%20CMYK-01.png" alt="hutech" style="display: block; margin-left: auto; margin-right: auto; width: 30%;">
-        <h4 style="font-weight: bold; text-align: center;">BÀI THỰC HÀNH BẢO MẬT THÔNG TIN NÂNG CAO</h4>
-        <ul style="margin-top: 30px;">
-            <li><a href="/caesar">Caesar Cipher</a></li>
-            <li><a href="/playfair">Playfair Cipher</a></li>
-            <li><a href="/railfence">Rail Fence Cipher</a></li>
-            <li><a href="/vigenere">Vigenere Cipher</a></li>
-            <li><a href="/rsa">RSA Cipher</a></li>
-        </ul>
+        <img src="https://file1.hutech.edu.vn/file/editor/homepage/stories/hinh34/logo%20CMYK-01.png" alt="hutech" class="logo">
+        
+        <h2 class="title">BÀI THỰC HÀNH BẢO MẬT THÔNG TIN NÂNG CAO</h2>
+        <p class="student-info">PHẠM PHÚ QUÝ 24800600803 HELLO WORLD!</p>
+        
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title text-center mb-4">Danh sách các bài mã hóa</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><a href="/caesar">🔐 Caesar Cipher</a></li>
+                    <li class="list-group-item"><a href="/playfair">🔐 Playfair Cipher</a></li>
+                    <li class="list-group-item"><a href="/railfence">🔐 Rail Fence Cipher</a></li>
+                    <li class="list-group-item"><a href="/vigenere">🔐 Vigenere Cipher</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

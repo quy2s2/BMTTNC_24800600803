@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request
 from cipher.caesar import CaesarCipher
 from cipher.vigenere import VigenereCipher
-from cipher.railfence import RailfenceCipher
-from cipher.playfair import PlayfairCipher
+from cipher.railfence import RailFenceCipher
+from cipher.playfair import PlayFairCipher
 
 app = Flask(__name__)
 
@@ -67,7 +67,7 @@ def railfence():
 def railfence_encrypt():
     text = request.form['inputPlainText']
     key = int(request.form['inputKeyPlain'])
-    cipher = RailfenceCipher()
+    cipher = RailFenceCipher()
     encrypted_text = cipher.rail_fence_encrypt(text, key)
     return f"Input text: {text}<br>Key: {key}<br>Encrypted text: {encrypted_text}"
 
@@ -76,7 +76,7 @@ def railfence_encrypt():
 def railfence_decrypt():
     text = request.form['inputCipherText']
     key = int(request.form['inputKeyCipher'])
-    cipher = RailfenceCipher()
+    cipher = RailFenceCipher()
     decrypted_text = cipher.rail_fence_decrypt(text, key)
     return f"Cipher text: {text}<br>Key: {key}<br>Decrypted text: {decrypted_text}"
 

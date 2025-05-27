@@ -1,52 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Vigenere Cipher</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light gray background for a clean look */
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* Modern, readable font */
+        }
+        .container {
+            max-width: 700px; /* Constrain width for better readability on large screens */
+            margin-top: 50px; /* Add some space from the top */
+        }
+        .main-title {
+            font-size: 2.5rem; /* Larger main title */
+            font-weight: 700; /* Bolder text */
+            color: #343a40; /* Darker text for good contrast */
+            text-align: center;
+            margin-bottom: 40px; /* Space below the main title */
+        }
+        .card {
+            border-radius: 10px; /* Slightly rounded corners for the cards */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Soft shadow for depth */
+            margin-bottom: 30px; /* Space between the encryption and decryption cards */
+            border: none; /* Remove default card border */
+        }
+        .card-header {
+            background-color: #007bff; /* Bootstrap primary blue for header */
+            color: white; /* White text for contrast */
+            font-weight: bold;
+            font-size: 1.5rem;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            padding: 15px 20px;
+        }
+        .card-title {
+            color: #007bff; /* Blue for section titles within cards */
+            font-weight: 600;
+            margin-bottom: 20px; /* Space below card titles */
+            font-size: 1.3rem;
+        }
+        .form-label {
+            font-weight: 500; /* Slightly bolder labels */
+            color: #495057; /* Dark gray for labels */
+        }
+        .btn {
+            min-width: 150px; /* Ensure buttons have a decent minimum width */
+            margin-top: 10px; /* Space above buttons */
+            padding: 10px 20px; /* More padding for larger click area */
+            font-size: 1.1rem; /* Slightly larger text for buttons */
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+    </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <table class="table">
-            <tr>
-                <td style="text-align: center; font-weight: bold; font-size: 25px;">VIGENERE CIPHER</td>
-            </tr>
-            <tr>
-                <td style="font-weight: bold; color: blue;">ENCRYPTION</td>
-            </tr>
-            <tr>
-                <td>
-                    <form method="POST" action="/vigenere/encrypt">
-                        <div class="mb-3">
-                            <label class="form-label">Plain text:</label>
-                            <input type="text" class="form-control" name="inputPlainText" placeholder="Input Plain Text" required autofocus/>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Key:</label>
-                            <input type="text" class="form-control" name="inputKeyPlain" placeholder="Input Key" required/>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Encrypt</button>
-                    </form>
-                </td>
-            </tr>
-            <tr>
-                <td style="font-weight: bold; color: blue;">DECRYPTION</td>
-            </tr>
-            <tr>
-                <td>
-                    <form method="POST" action="/vigenere/decrypt">
-                        <div class="mb-3">
-                            <label class="form-label">Cipher text:</label>
-                            <input type="text" class="form-control" name="inputCipherText" placeholder="Input Cipher Text" required/>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Key:</label>
-                            <input type="text" class="form-control" name="inputKeyCipher" placeholder="Input Key" required/>
-                        </div>
-                        <button type="submit" class="btn btn-success">Decrypt</button>
-                    </form>
-                </td>
-            </tr>
-        </table>
+    <div class="container">
+        <h1 class="main-title">VIGENERE CIPHER</h1>
+
+        <div class="card">
+            <div class="card-header">ENCRYPTION</div>
+            <div class="card-body">
+                <h5 class="card-title">Encrypt your plain text:</h5>
+                <form method="POST" action="/vigenere/encrypt">
+                    <div class="form-group">
+                        <label for="inputPlainText" class="form-label">Plain text:</label>
+                        <input type="text" class="form-control" id="inputPlainText" name="inputPlainText" placeholder="Input Plain Text" required autofocus/>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputKeyPlain" class="form-label">Key:</label>
+                        <input type="text" class="form-control" id="inputKeyPlain" name="inputKeyPlain" placeholder="Input Key" required/>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Encrypt</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">DECRYPTION</div>
+            <div class="card-body">
+                <h5 class="card-title">Decrypt your cipher text:</h5>
+                <form method="POST" action="/vigenere/decrypt">
+                    <div class="form-group">
+                        <label for="inputCipherText" class="form-label">Cipher text:</label>
+                        <input type="text" class="form-control" id="inputCipherText" name="inputCipherText" placeholder="Input Cipher Text" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputKeyCipher" class="form-label">Key:</label>
+                        <input type="text" class="form-control" id="inputKeyCipher" name="inputKeyCipher" placeholder="Input Key" required/>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-block">Decrypt</button>
+                </form>
+            </div>
+        </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
