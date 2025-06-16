@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request
 from cipher.caesar import CaesarCipher
 from cipher.vigenere import VigenereCipher
-from cipher.railfence import RailfenceCipher
-from cipher.playfair import PlayfairCipher
+from cipher.railfence import RailFenceCipher
+from cipher.playfair import PlayFairCipher
 
 app = Flask(__name__)
 
@@ -67,7 +67,7 @@ def railfence():
 def railfence_encrypt():
     text = request.form['inputPlainText']
     key = int(request.form['inputKeyPlain'])
-    cipher = RailfenceCipher()
+    cipher = RailFenceCipher()
     encrypted_text = cipher.rail_fence_encrypt(text, key)
     return f"Input text: {text}<br>Key: {key}<br>Encrypted text: {encrypted_text}"
 
@@ -76,7 +76,7 @@ def railfence_encrypt():
 def railfence_decrypt():
     text = request.form['inputCipherText']
     key = int(request.form['inputKeyCipher'])
-    cipher = RailfenceCipher()
+    cipher = RailFenceCipher()
     decrypted_text = cipher.rail_fence_decrypt(text, key)
     return f"Cipher text: {text}<br>Key: {key}<br>Decrypted text: {decrypted_text}"
 
@@ -90,8 +90,9 @@ def playfair():
 def playfair_encrypt():
     text = request.form['inputPlainText']
     key = request.form['inputKeyPlain']
-    cipher = PlayfairCipher()
-    encrypted_text = cipher.encrypt_text(text, key)
+    cipher = PlayFairCipher()
+    matrix = cipher.create_playfair_matrix(key)
+    encrypted_text = cipher.playfair_encrypt(text, matrix)
     return f"Input text: {text}<br>Key: {key}<br>Encrypted text: {encrypted_text}"
 
 # Giải mã Playfair
@@ -99,8 +100,9 @@ def playfair_encrypt():
 def playfair_decrypt():
     text = request.form['inputCipherText']
     key = request.form['inputKeyCipher']
-    cipher = PlayfairCipher()
-    decrypted_text = cipher.decrypt_text(text, key)
+    cipher = PlayFairCipher()
+    matrix = cipher.create_playfair_matrix(key)
+    decrypted_text = cipher.playfair_decrypt(text, matrix)
     return f"Cipher text: {text}<br>Key: {key}<br>Decrypted text: {decrypted_text}"
 
 if __name__ == "__main__":
