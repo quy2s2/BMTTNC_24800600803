@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 03 - Mã hóa RSA & ECC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <style>
+        body {
+            background-color: #e9ecef;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        .logo {
+            display: block;
+            margin: 40px auto 20px auto;
+            width: 25%;
+            max-width: 200px;
+            height: auto;
+        }
+        .card {
+            margin-top: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: none;
+        }
+        .title {
+            font-weight: 700;
+            text-align: center;
+            margin-top: 30px;
+            color: #343a40;
+            font-size: 2.2rem;
+        }
+        .student-info {
+            text-align: center;
+            font-weight: 600;
+            color: #6c757d;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+        .list-group-item {
+            border-color: #dee2e6;
+            font-size: 1.05rem;
+            padding: 15px 20px;
+            transition: background-color 0.3s ease;
+        }
+        .list-group-item:hover {
+            background-color: #f8f9fa;
+        }
+        .list-group-item a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: block;
+            cursor: pointer;
+        }
+        .list-group-item a:hover {
+            color: #0056b3;
+            text-decoration: none;
+        }
+        .card-title {
+            font-weight: 600;
+            color: #495057;
+            font-size: 1.75rem;
+        }
+        .modal-header {
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+        }
+        .modal-body {
+            padding: 20px;
+        }
+        .text-key {
+            font-family: monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="img.jpg" alt="hutech 30 năm" class="logo">
+        
+        <h2 class="title">BÀI THỰC HÀNH LAB-03: RSA & ECC</h2>
+        <p class="student-info">PHẠM PHÚ QUÝ 24800600803</p>
+        
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title text-center mb-4">Danh sách các thuật toán mã hóa</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><a data-toggle="modal" data-target="#rsaModal">🔐 RSA Cipher</a></li>
+                    <li class="list-group-item"><a data-toggle="modal" data-target="#eccModal">🔐 ECC Cipher</a></li>
+                    <li class="list-group-item"><a data-toggle="modal" data-target="#dhModal">🔐 Diffie-Hellman Key Exchange</a></li>
+                    <li class="list-group-item"><a data-toggle="modal" data-target="#dsaModal">🔐 Digital Signature Algorithm</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- RSA Modal -->
+    <div class="modal fade" id="rsaModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">RSA Encryption/Decryption</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3 text-primary">fullname: Phạm Phú Quý + MSSV: 24800600803</div>
+                    <form id="rsaForm">
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea class="form-control" rows="3" id="rsaMessage" placeholder="Enter message to encrypt/decrypt"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Key Type</label>
+                            <select class="form-control" id="rsaKeyType">
+                                <option value="public">Public Key (Encrypt)</option>
+                                <option value="private">Private Key (Decrypt)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Key (Optional)</label>
+                            <textarea class="form-control text-key" rows="3" id="rsaKey" placeholder="Enter key or leave blank for default"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Process</button>
+                        <div class="mt-3">
+                            <label>Result:</label>
+                            <textarea class="form-control" rows="3" id="rsaResult" readonly></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ECC Modal -->
+    <div class="modal fade" id="eccModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">ECC Encryption/Decryption</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3 text-primary">fullname: Phạm Phú Quý + MSSV: 24800600803</div>
+                    <form id="eccForm">
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea class="form-control" rows="3" id="eccMessage" placeholder="Enter message to encrypt/decrypt"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Curve</label>
+                            <select class="form-control" id="eccCurve">
+                                <option value="P-256">NIST P-256</option>
+                                <option value="P-384">NIST P-384</option>
+                                <option value="P-521">NIST P-521</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Key Type</label>
+                            <select class="form-control" id="eccKeyType">
+                                <option value="public">Public Key (Encrypt)</option>
+                                <option value="private">Private Key (Decrypt)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Key (Optional)</label>
+                            <textarea class="form-control text-key" rows="3" id="eccKey" placeholder="Enter key or leave blank for default"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Process</button>
+                        <div class="mt-3">
+                            <label>Result:</label>
+                            <textarea class="form-control" rows="3" id="eccResult" readonly></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Diffie-Hellman Modal -->
+    <div class="modal fade" id="dhModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Diffie-Hellman Key Exchange</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3 text-primary">fullname: Phạm Phú Quý + MSSV: 24800600803</div>
+                    <form id="dhForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Alice</h6>
+                                <div class="form-group">
+                                    <label>Private Key</label>
+                                    <input type="number" class="form-control" id="dhAlicePrivate">
+                                </div>
+                                <div class="form-group">
+                                    <label>Public Value</label>
+                                    <input type="text" class="form-control" id="dhAlicePublic" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Bob</h6>
+                                <div class="form-group">
+                                    <label>Private Key</label>
+                                    <input type="number" class="form-control" id="dhBobPrivate">
+                                </div>
+                                <div class="form-group">
+                                    <label>Public Value</label>
+                                    <input type="text" class="form-control" id="dhBobPublic" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Calculate Shared Secret</button>
+                        <div class="mt-3">
+                            <label>Shared Secret:</label>
+                            <input type="text" class="form-control" id="dhSharedSecret" readonly>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Digital Signature Modal -->
+    <div class="modal fade" id="dsaModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Digital Signature Algorithm</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3 text-primary">fullname: Phạm Phú Quý + MSSV: 24800600803</div>
+                    <form id="dsaForm">
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea class="form-control" rows="3" id="dsaMessage" placeholder="Enter message to sign/verify"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Action</label>
+                            <select class="form-control" id="dsaAction">
+                                <option value="sign">Sign Message</option>
+                                <option value="verify">Verify Signature</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Private Key (for signing)</label>
+                            <textarea class="form-control text-key" rows="3" id="dsaPrivateKey" placeholder="Enter private key for signing"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Public Key (for verification)</label>
+                            <textarea class="form-control text-key" rows="3" id="dsaPublicKey" placeholder="Enter public key for verification"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Signature</label>
+                            <textarea class="form-control text-key" rows="3" id="dsaSignature" placeholder="Enter/View signature here"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Process</button>
+                        <div class="mt-3">
+                            <label>Result:</label>
+                            <div class="alert" id="dsaResult" role="alert"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Prevent form submission
+        $('form').on('submit', function(e) {
+            e.preventDefault();
+            
+            // Get the form ID
+            const formId = $(this).attr('id');
+            
+            // Show placeholder result based on form
+            switch(formId) {
+                case 'rsaForm':
+                    $('#rsaResult').val('RSA operation result will appear here');
+                    break;
+                case 'eccForm':
+                    $('#eccResult').val('ECC operation result will appear here');
+                    break;
+                case 'dhForm':
+                    $('#dhSharedSecret').val('Shared secret will appear here');
+                    break;
+                case 'dsaForm':
+                    $('#dsaResult').removeClass().addClass('alert alert-info').text('Signature operation result will appear here');
+                    break;
+            }
+        });
+    </script>
+</body>
+</html>

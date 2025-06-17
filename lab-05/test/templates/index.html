@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encryption Algorithms</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logos {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .logo {
+            max-width: 200px;
+            height: auto;
+        }
+        .student-info {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .algorithms {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .algorithm-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .algorithm-card:hover {
+            transform: translateY(-5px);
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logos">
+            <img src="{{ url_for('static', filename='hutech_logo.png') }}" alt="HUTECH Logo" class="logo">
+            <img src="{{ url_for('static', filename='hutech_30.jpg') }}" alt="HUTECH 30 Years" class="logo">
+        </div>
+    </div>
+    
+    <div class="student-info">
+        <h2>Phạm Phú Quý</h2>
+        <p>MSSV: 24800600803</p>
+    </div>
+    
+    <h1>Encryption Algorithms</h1>
+    
+    <div class="algorithms">
+        <div class="algorithm-card">
+            <h2>Caesar Cipher</h2>
+            <a href="/caesar" class="btn">Open Form</a>
+        </div>
+        <div class="algorithm-card">
+            <h2>RSA Cipher</h2>
+            <a href="/rsa" class="btn">Open Form</a>
+        </div>
+        <div class="algorithm-card">
+            <h2>ECC Cipher</h2>
+            <a href="/ecc" class="btn">Open Form</a>
+        </div>
+    </div>
+</body>
+</html>
